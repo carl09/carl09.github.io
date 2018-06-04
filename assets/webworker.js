@@ -12956,48 +12956,48 @@
             console.log("start"), this.productsService.loadProducts(), "undefined" != typeof onmessage && void 0 !== typeof onmessage ? onmessage = function(t) {
                 if (t.data) {
                     var n = t.data;
-                    e.processMessage(n, e.send);
+                    e.processMessage(n);
                 }
             } : console.warn("Not a web Worker"), "undefined" != typeof onconnect && void 0 !== typeof onconnect ? (this.isSharedWorker = !0, 
             onconnect = function(t) {
                 console.log("portCont", t.ports.length), e.ports.push(t.ports[0]), t.ports[0].onmessage = function(t) {
                     if (t.data) {
                         var n = t.data;
-                        e.processMessage(n, e.send);
+                        e.processMessage(n);
                     }
                 };
             }) : console.warn("Not a shared Worker");
         }, e.prototype.listen = function() {
             return this.listnerSubject.asObservable();
         }, e.prototype.send = function(e) {
-            this.ports && this.ports.length ? this.ports.forEach(function(t) {
+            console.log("Sending Message to Client:", e), this.ports && this.ports.length ? this.ports.forEach(function(t) {
                 return t.postMessage(e);
             }) : postMessage(e);
         }, e.prototype.stop = function() {
             this.worker.terminate(), this.worker = void 0;
-        }, e.prototype.processMessage = function(e, t) {
-            var n, r = this;
-            switch (e.action) {
+        }, e.prototype.processMessage = function(e) {
+            var t, n = this;
+            switch (console.log("Received Message from Client:", e), e.action) {
               case "reducer":
-                var o = e;
-                this.store.dispatch(o.payload);
+                var r = e;
+                this.store.dispatch(r.payload);
                 break;
 
               case "listen":
-                (n = new Yh(o = e)).subscription = this.store.select(o.reducer).subscribe(function(e) {
-                    r.send({
-                        reducer: n.key,
+                (t = new Yh(r = e)).subscription = this.store.select(r.reducer).subscribe(function(e) {
+                    n.send({
+                        reducer: t.key,
                         payload: e
                     });
                 });
                 break;
 
               case "execute":
-                var i = e;
-                n = new Yh(i), this.serviceWithIndex.forEach(function(e) {
-                    e.methods[i.key] && (n.subscription = e.methods[i.key](i.args).subscribe(function(e) {
-                        r.send({
-                            reducer: n.key,
+                var o = e;
+                t = new Yh(o), this.serviceWithIndex.forEach(function(e) {
+                    e.methods[o.key] && (t.subscription = e.methods[o.key](o.args).subscribe(function(e) {
+                        n.send({
+                            reducer: t.key,
                             payload: e
                         });
                     }));
@@ -13006,12 +13006,12 @@
 
               case "unsubscribe":
                 if (!this.isSharedWorker) {
-                    o = e;
-                    for (var s = this.subs.length; s--; ) this.subs[s].key === o.key && (this.subs[s].subscription.unsubscribe(), 
-                    this.subs.splice(s, 1));
+                    r = e;
+                    for (var i = this.subs.length; i--; ) this.subs[i].key === r.key && (this.subs[i].subscription.unsubscribe(), 
+                    this.subs.splice(i, 1));
                 }
             }
-            n && this.subs.push(n);
+            t && this.subs.push(t);
         }, e.decorators = [ {
             type: Dt
         } ], e.ctorParameters = function() {
