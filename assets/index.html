@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Webwork</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <p>Count numbers 33:
+    <output id="result"></output>
+  </p>
+  <button onclick="startWorker(true)">Start Worker</button>
+  <button onclick="stopWorker(true)">Stop Worker</button>
+
+  <script>
+    var w;
+
+    function startWorker(val) {
+
+      if (val) {
+
+        w = new SharedWorker("webworker.js", 'My Worker');
+
+        w.onerror = function(message) {
+          console.log('message', message);
+        }
+
+        w.port.onmessage = function(message) {
+          console.log('message', message);
+        }
+
+        w.port.onmessageerror = function(message) {
+          console.log('message', message);
+        }
+
+        
+
+        // w.port.addEventListener('message', function (message) {
+        //   console.log('message', message);
+        //   this.listnerSubject.next(message.data);
+        // });
+
+        // w.port.start();
+
+      } else {
+
+        if (typeof (Worker) !== "undefined") {
+          if (typeof (w) == "undefined") {
+            w = new Worker("webworker.js");
+          }
+          w.onmessage = function (event) {
+            document.getElementById("result").innerHTML = event.data.val;
+          };
+        } else {
+          document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
+        }
+
+      }
+
+    }
+
+    function stopWorker() {
+
+      if (val) {
+        w.port.close();
+        w = undefined;
+      } else {
+        w.terminate();
+        w = undefined;
+      }
+
+    }
+  </script>
+</body>
+
+</html>

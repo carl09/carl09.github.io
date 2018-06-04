@@ -1,0 +1,57 @@
+[
+  {
+    "code": "chain",
+    "name": "Shimano Dura Ace 9000 11 Speed Chain",
+    "img": "assets/products/Dura-Ace-Chain-xtr.jpg",
+    "unitPrice": 52.68
+  },
+  {
+    "code": "chainset",
+    "name": "Shimano Dura Ace R9100 Chainset",
+    "img": "assets/products/Dura-Ace-R9100-Chainset.jpg",
+    "unitPrice": 537.99
+  },
+  {
+    "code": "bb",
+    "name": "Hope Stainless Steel Bottom Bracket",
+    "img": "assets/products/hope-sst-bb-blue.jpg",
+    "unitPrice": 136.87
+  },
+  {
+    "code": "tube",
+    "name": "Vittoria Road Inner Tube",
+    "img": "assets/products/vittoria-inner-tube-green.jpg",
+    "unitPrice": 4.99
+  },
+  {
+    "code": "pedals",
+    "name": "Crank Brothers Mallet 2 Pedals",
+    "img": "assets/products/4265-11003-thickbox.jpg",
+    "unitPrice": 124.08
+  },
+  {
+    "code": "disc",
+    "name": "Hope Road Floating Disc",
+    "img":
+      "assets/products/Hope-Road-Floating-Disc-Internal-Blue-NotSet-HBSP3611606FB.jpg",
+    "unitPrice": 72.59
+  },
+  {
+    "code": "tyre",
+    "name": "Continental Grand Prix 4000S II Tyre",
+    "img": "assets/products/Continental-4000S-II-Road-Tyre.jpg",
+    "unitPrice": 51.99
+  },
+  {
+    "code": "wheels",
+    "name": "Fulcrum Racing Zero C17 Clincher Wheelset",
+    "img": "assets/products/Fulcrum-Racing-Zero-Wheelset.jpg",
+    "unitPrice": 1445.49
+  },
+  {
+    "code": "garmin",
+    "name": "Garmin Edge 820 GPS Cycle Computer",
+    "img": "assets/products/Garmin-Edge-820.jpg",
+    "unitPrice": 527.12
+  }
+]
